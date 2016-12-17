@@ -3,7 +3,9 @@ package com.lazokin.canyonbunny;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
+import com.lazokin.canyonbunny.game.Assets;
 import com.lazokin.canyonbunny.game.WorldController;
 import com.lazokin.canyonbunny.game.WorldRenderer;
 
@@ -18,6 +20,7 @@ public class CanyonBunnyMain implements ApplicationListener {
 
     @Override public void create() {
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
+        Assets.instance.init(new AssetManager());
         worldController = new WorldController();
         worldRenderer = new WorldRenderer(worldController);
         paused = false;
@@ -46,5 +49,6 @@ public class CanyonBunnyMain implements ApplicationListener {
 
     @Override public void dispose() {
         worldRenderer.dispose();
+        Assets.instance.dispose();
     }
 }
